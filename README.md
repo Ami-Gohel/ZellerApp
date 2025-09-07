@@ -1,97 +1,170 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Zeller React Native App
 
-# Getting Started
+A React Native application that displays, filters, and manages a list of users with offline capabilities and modern UI components.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Features
 
-## Step 1: Start Metro
+- **Data Integration**: Fetches user data from GraphQL API and stores in local SQLite database
+- **User Management**: Add, edit, and delete users with form validation
+- **Filtering & Search**: Filter by user role (Admin/Manager) and search by name
+- **Offline Support**: Works offline with local database persistence
+- **Smooth Animations**: PagerView with smooth tab transitions
+- **Pull-to-Refresh**: Refresh data from API
+- **Toast Notifications**: Modern toast notifications for user feedback
+- **Reusable Components**: Custom Input and Button components
+- **Cross-Platform**: Runs on both iOS and Android
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Tech Stack
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- **React Native** 0.81.1 with TypeScript
+- **react-native-sqlite-storage** for local database
+- **Redux Toolkit** for state management
+- **Apollo Client** for GraphQL integration
+- **React Navigation** for navigation
+- **React Native Pager View** for tab animations
+- **Lucide React Native** for icons
+- **Jest** for testing
 
-```sh
-# Using npm
-npm start
+## Prerequisites
 
-# OR using Yarn
-yarn start
-```
+- Node.js (v20 or higher)
+- React Native CLI
+- iOS Simulator (for iOS development)
+- Android Studio (for Android development)
 
-## Step 2: Build and run your app
+## Installation
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+1. Clone the repository and navigate to the project directory:
+   ```bash
+   cd ZellerApp
+   ```
 
-### Android
+2. Install dependencies:
+   ```bash
+   yarn install
+   ```
 
-```sh
-# Using npm
-npm run android
+3. For iOS, install CocoaPods dependencies:
+   ```bash
+   cd ios && pod install && cd ..
+   ```
 
-# OR using Yarn
-yarn android
-```
+4. Start the mock server (in a separate terminal):
+   ```bash
+   cd ../mock-server
+   yarn install
+   yarn start
+   ```
+
+## Running the App
 
 ### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```bash
+yarn run ios
 ```
 
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
+### Android
+```bash
+yarn run android
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## Mock Server
 
-```sh
-# Using npm
-npm run ios
+The app connects to a mock GraphQL server. The mock server is already set up in the parent directory and should be running on `http://localhost:9002`.
 
-# OR using Yarn
-yarn ios
+**Note**: Make sure the mock server is running before starting the React Native app, as the app will attempt to sync data from the API during initialization.
+
+## Testing
+
+Run the test suite:
+```bash
+npm test
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## Project Structure
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+```
+src/
+├── components/          # Reusable UI components
+│   ├── Button.tsx      # Custom button component
+│   ├── Input.tsx       # Custom input component
+│   ├── TabBar.tsx      # Tab navigation component
+│   ├── Toast.tsx       # Toast notification component
+│   └── UserCard.tsx    # User card component
+├── contexts/           # React contexts
+│   └── ToastContext.tsx # Toast notification context
+├── graphql/            # GraphQL client and queries
+│   ├── client.ts
+│   └── queries.ts
+├── navigation/         # Navigation configuration
+│   └── MainNavigator.tsx
+├── screens/            # Screen components
+│   ├── InitializationScreen.tsx
+│   ├── UserFormScreen.tsx
+│   └── UserListScreen.tsx
+├── services/           # Business logic services
+│   ├── SQLiteService.ts # SQLite database service
+│   └── UserService.ts   # User management service
+├── store/              # Redux store configuration
+│   ├── hooks.ts        # Typed Redux hooks
+│   ├── index.ts        # Store configuration
+│   └── userSlice.ts    # User state management
+├── types/              # TypeScript type definitions
+│   └── index.ts
+└── utils/              # Utility functions
+    ├── colors.ts       # Color constants
+    ├── constants.ts    # App constants
+    └── validation.ts   # Form validation utilities
+```
 
-## Step 3: Modify your app
+## Key Features Implementation
 
-Now that you have successfully run the app, let's make changes!
+### Database Integration
+- Uses **react-native-sqlite-storage** for direct SQLite database operations
+- Automatic synchronization between API and local database
+- Offline-first approach with sync indicators
+- Soft delete functionality to prevent re-adding deleted users
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+### State Management
+- **Redux Toolkit** for centralized state management
+- Async thunks for API operations
+- Optimized selectors for data filtering
+- Immutable state updates with Immer
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+### User Management
+- Form validation with real-time feedback
+- Name validation (alphabets and spaces only, max 50 characters)
+- Email validation (optional but must be valid format)
+- Role selection (Admin/Manager)
+- Toast notifications for user feedback
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+### UI/UX Components
+- **Custom Input Component**: Reusable input with labels, validation, and error states
+- **Custom Button Component**: Multiple variants (primary, secondary, outline, danger) with loading states
+- **Toast Notifications**: Modern toast system with 4 types (success, error, info, warning)
+- Smooth tab animations using PagerView
+- Pull-to-refresh functionality
+- Search and filter capabilities
+- Material Design-inspired UI
+- Cross-platform compatibility
 
-## Congratulations! :tada:
+### Data Flow
+1. App initializes SQLite database on startup
+2. Users are loaded from local database via Redux
+3. Pull-to-refresh syncs with GraphQL API
+4. Local CRUD operations update database and Redux state
+5. Real-time UI updates with Redux state management
 
-You've successfully run and modified your React Native App. :partying_face:
+## API Integration
 
-### Now what?
+The app integrates with the provided GraphQL API:
+- **Endpoint**: Configured in `aws-exports.js`
+- **Query**: `listZellerCustomers` for fetching users
+- **Authentication**: API Key authentication
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+## Validation Rules
 
-# Troubleshooting
+- **Name**: Required, alphabets and spaces only, max 50 characters
+- **Email**: Optional, must be valid email format if provided
+- **Role**: Required, must be either "Admin" or "Manager"
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
