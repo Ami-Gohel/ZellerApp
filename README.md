@@ -178,4 +178,14 @@ The app integrates with the provided GraphQL API:
 ## Tab Animation
 https://github.com/user-attachments/assets/cfe2adbe-dc41-4491-8e58-d9613bfb25f9
 
+## Add, Edit and Delete
+
+https://github.com/user-attachments/assets/0ce8fcba-55a3-4b24-ab6d-e6dad4c1756e
+
+## Pull to refresh
+
+https://github.com/user-attachments/assets/7517a739-9d8c-4319-a95f-a8c286734d61
+
+
+
 
