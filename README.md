@@ -167,4 +167,14 @@ The app integrates with the provided GraphQL API:
 - **Name**: Required, alphabets and spaces only, max 50 characters
 - **Email**: Optional, must be valid email format if provided
 - **Role**: Required, must be either "Admin" or "Manager"
+ 
+## How it looks 
+
+<img width="1080" height="2400" alt="Screenshot_1757256638" src="https://github.com/user-attachments/assets/04257788-e41b-4b29-a222-13bd2efb593c" />
+<img width="1080" height="2400" alt="Screenshot_1757256643" src="https://github.com/user-attachments/assets/891e89d7-bc7b-4f10-bea4-68b794185763" />
+<img width="1080" height="2400" alt="Screenshot_1757256648" src="https://github.com/user-attachments/assets/1c5a75ab-4af1-48cf-8605-078f2f272fb8" />
+<img width="1080" height="2400" alt="Screenshot_1757256650" src="https://github.com/user-attachments/assets/eff97056-fffb-4ee1-99c9-05662581963d" />
+
+https://github.com/user-attachments/assets/cfe2adbe-dc41-4491-8e58-d9613bfb25f9
+
 
